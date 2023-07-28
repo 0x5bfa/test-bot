@@ -1,9 +1,10 @@
-name: Bump up Files version
-run-name: Bump up Files version to ${{ inputs.files_new_version }} by @${{ github.actor }}
+name: Files Package Version Bump Up
+run-name: Bump up package version to ${{ inputs.files_new_version }} by @${{ github.actor }}
 on:
     workflow_dispatch:
         inputs:
             files_new_version:
+                description: 'New Version:'
                 required: true
 
 jobs:
@@ -19,16 +20,13 @@ jobs:
               uses: peter-evans/create-pull-request@v4
               with:
                 token: ${{ secrets.ACCESS_TOKEN }}
-                commit-message: 'Package: Bump Files to ${{ inputs.files_new_version }}'
+                commit-message: 'Package: Bump up Files package to ${{ inputs.files_new_version }}'
                 committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 signoff: false
-                branch: ${{ github.actor }}/bump-up-to-${{ inputs.files_new_version }}
+                branch: 'release/${{ inputs.files_new_version }}'
                 delete-branch: true
-                title: 'Package: Bump Files to ${{ inputs.files_new_version }}'
+                title: 'Release: ${{ inputs.files_new_version }}'
                 body: |
-                    body here
-                labels: |
-                    automation
-                reviewers: onein528
+                    Bumps Files to ${{ inputs.files_new_version }}
                 draft: false
