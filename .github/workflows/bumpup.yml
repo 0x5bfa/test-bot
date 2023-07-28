@@ -35,7 +35,7 @@ jobs:
               uses: peter-evans/create-pull-request@v4
               with:
                 token: ${{ secrets.ACCESS_TOKEN }}
-                commit-message: '${{ inputs.package_version_type }}: Update package version to ${{ inputs.files_new_version }}'
+                commit-message: '${{ inputs.package_version_type }}: ${{ inputs.files_new_version }}'
                 committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 signoff: false
