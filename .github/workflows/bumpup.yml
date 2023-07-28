@@ -44,6 +44,9 @@ jobs:
                 title: '${{ inputs.package_version_type }}: ${{ inputs.files_new_version }}'
                 body: |
                     ### Summary
-                    Bumps Files to **${{ inputs.files_new_version }}**
+                    Bumps Files to **${{ inputs.files_new_version }}**.
                     Created by GitHub Actions on behalf of @${{ github.actor }}.
+                    
+                    ### Package type
+                    **${{ inputs.package_version_type }}** package.
                 draft: false
