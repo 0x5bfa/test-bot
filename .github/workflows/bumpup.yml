@@ -6,7 +6,7 @@ on:
             files_new_version:
                 description: 'New version number:'
                 required: true
-            preview_or_release:
+            package_version_type:
                 description: 'Package version type:'
                 type: choice
                 default: Release
@@ -26,17 +26,22 @@ jobs:
               run: |
                   sed -i "s/<Identity Name=\"\(.*\)\" Publisher=\"\(.*\)\" Version=\"\(.*\)\" \/>/<Identity Name=\"\1\" Publisher=\"\2\" Version=\"${{ inputs.files_new_version }}\" \/>/g" "Package.appxmanifest"
 
+            - id: package_type_string
+              uses: ASzc/change-string-case-action@v5
+              with:
+                string: ${{ inputs.package_version_type }}
+
             - name: Create a new PR
               uses: peter-evans/create-pull-request@v4
               with:
                 token: ${{ secrets.ACCESS_TOKEN }}
-                commit-message: '${{ inputs.preview_or_release }}: Update package version to ${{ inputs.files_new_version }}'
+                commit-message: '${{ inputs.package_version_type }}: Update package version to ${{ inputs.files_new_version }}'
                 committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 signoff: false
-                branch: 'release/${{ inputs.files_new_version }}'
+                branch: '${{ steps.package_type_string.outputs.lowercase }}/${{ inputs.files_new_version }}'
                 delete-branch: true
-                title: 'Release: ${{ inputs.files_new_version }}'
+                title: '${{ inputs.package_version_type }}: ${{ inputs.files_new_version }}'
                 body: |
                     Bumps Files to ${{ inputs.files_new_version }}
                     Created by GitHub Actions on behalf of ${{ github.actor }}.
