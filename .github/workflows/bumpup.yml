@@ -4,8 +4,16 @@ on:
     workflow_dispatch:
         inputs:
             files_new_version:
-                description: 'New Version:'
+                description: 'New version number:'
                 required: true
+            preview_or_release:
+                description: 'Package version type:'
+                type: choice
+                default: Release
+                options:
+                    - Preview
+                    - Release
+                required: false
 
 jobs:
     resources:
@@ -13,14 +21,16 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+
             - name: Update Package.appxmanifest
               run: |
                   sed -i "s/<Identity Name=\"\(.*\)\" Publisher=\"\(.*\)\" Version=\"\(.*\)\" \/>/<Identity Name=\"\1\" Publisher=\"\2\" Version=\"${{ inputs.files_new_version }}\" \/>/g" "Package.appxmanifest"
+
             - name: Create a new PR
               uses: peter-evans/create-pull-request@v4
               with:
                 token: ${{ secrets.ACCESS_TOKEN }}
-                commit-message: 'Release: Update package version to ${{ inputs.files_new_version }}'
+                commit-message: '${{ inputs.preview_or_release }}: Update package version to ${{ inputs.files_new_version }}'
                 committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 signoff: false
@@ -29,4 +39,5 @@ jobs:
                 title: 'Release: ${{ inputs.files_new_version }}'
                 body: |
                     Bumps Files to ${{ inputs.files_new_version }}
+                    Created by GitHub Actions on behalf of ${{ github.actor }}.
                 draft: false
