@@ -1,5 +1,5 @@
 name: Files Package Version Bump Up
-run-name: Bump up package version to ${{ inputs.files_new_version }} by @${{ github.actor }}
+run-name: Bump up Files to ${{ inputs.files_new_version }}
 on:
     workflow_dispatch:
         inputs:
@@ -20,7 +20,7 @@ jobs:
               uses: peter-evans/create-pull-request@v4
               with:
                 token: ${{ secrets.ACCESS_TOKEN }}
-                commit-message: 'Package: Bump up Files package to ${{ inputs.files_new_version }}'
+                commit-message: 'Release: Update package version to ${{ inputs.files_new_version }}'
                 committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
                 signoff: false
