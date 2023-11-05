@@ -48,9 +48,9 @@ jobs:
 
         [xml]$xmlDoc = Get-Content "testResults.trx"
 
-        $sb.AppendLine($title);
-        $sb.AppendLine();
-        $sb.AppendLine();
-        $sb.AppendLine();
+        [void]$sb.AppendLine($title);
+        [void]$sb.AppendLine();
+        [void]$sb.AppendLine();
+        [void]$sb.AppendLine();
 
         Write-Output $sb.ToString();
