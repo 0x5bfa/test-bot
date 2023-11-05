@@ -46,7 +46,7 @@ jobs:
         $mdPath = "testResults.md"
         [string]$title = "## Files Tests Result <img alt=""logo"" src=""https://github.com/files-community/Files/assets/62196528/6d4b489a-12be-4819-9bbc-a5f95858e77d"" width=""28"" align=""top"" />"
 
-        // Get test log
+        # Get test log
         [xml]$xmlDoc = Get-Content "testResults.trx"
 
         # Header
