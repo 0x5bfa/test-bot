@@ -68,7 +68,7 @@ jobs:
         [void]$stringBuilder.AppendLine("</tr>");
         [void]$stringBuilder.AppendLine("</table>");
 
-        // Details Table
+        # Details Table
         [void]$stringBuilder.AppendLine("### Details");
         [void]$stringBuilder.AppendLine("");
         [void]$stringBuilder.AppendLine("");
