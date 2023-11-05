@@ -55,7 +55,6 @@ jobs:
         $AbbreviatedOid = $env:GITHUB_SHA
         $AbbreviatedOid = $AbbreviatedOid.Substring(0, 7);
 
-
         # Header
         [void]$stringBuilder.AppendLine($title);
         [void]$stringBuilder.AppendLine("");
@@ -72,7 +71,7 @@ jobs:
         [void]$stringBuilder.AppendLine("</tr>");
         [void]$stringBuilder.AppendLine("<tr>");
         [void]$stringBuilder.AppendLine("<td><strong>Full log:</strong></td>");
-        [void]$stringBuilder.AppendLine("<td><a href=""https://github.com/files-community/Files/actions/runs/6759052779/job/18371473998"">https://github.com/files-community/Files/actions/runs/6759052779/job/18371473998</a></td>");
+        [void]$stringBuilder.AppendLine("<td><a href=""https://github.com/files-community/Files/actions/runs/$GITHUB_RUN_ID/job/$GITHUB_JOB"">https://github.com/files-community/Files/actions/runs/$GITHUB_RUN_ID/job/$GITHUB_JOB</a></td>");
         [void]$stringBuilder.AppendLine("</tr>");
         [void]$stringBuilder.AppendLine("</table>");
         [void]$stringBuilder.AppendLine("");
