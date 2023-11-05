@@ -73,6 +73,7 @@ jobs:
         # Details Table
         [void]$stringBuilder.AppendLine("### Details");
         [void]$stringBuilder.AppendLine("Name|Status|Failed class");
+        [void]$stringBuilder.AppendLine("--|---|---");
         [void]$stringBuilder.AppendLine("FolderTests|✅|_None_");
         [void]$stringBuilder.AppendLine("GeneralAppTests|✅|_None_");
         [void]$stringBuilder.AppendLine("SettingsTests|");
