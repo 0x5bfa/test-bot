@@ -43,10 +43,10 @@ jobs:
       run: |
         $stringBuilder = New-Object System.Text.StringBuilder
 
-        $mdPath = "testResults.trx"
+        $mdPath = "testResults.md"
         [string]$title = "## Files Tests Result <img alt=\"logo\" src=\"https://github.com/files-community/Files/assets/62196528/6d4b489a-12be-4819-9bbc-a5f95858e77d\" width=\"28\" align=\"top\" />"
 
-        [xml]$xmlDoc = Get-Content "$env:AUTOMATED_TESTS_ASSEMBLY_DIR\testResults.trx"
+        [xml]$xmlDoc = Get-Content "testResults.trx"
 
         $sb.AppendLine($mdContent);
         $sb.AppendLine();
