@@ -49,6 +49,13 @@ jobs:
         # Get test log
         [xml]$xmlDoc = Get-Content "testResults.trx"
 
+        # Get values
+
+        $pullRequestId = $env:PULL_REQUEST_ID
+        $AbbreviatedOid = $env:GITHUB_SHA
+        $AbbreviatedOid = $AbbreviatedOid.Substring(0, 7);
+
+
         # Header
         [void]$stringBuilder.AppendLine($title);
         [void]$stringBuilder.AppendLine("");
@@ -57,7 +64,7 @@ jobs:
         [void]$stringBuilder.AppendLine("<table>");
         [void]$stringBuilder.AppendLine("<tr>");
         [void]$stringBuilder.AppendLine("<td><strong>Latest commit:</strong></td>");
-        [void]$stringBuilder.AppendLine("<td><a href=""https://github.com/files-community/Files/pull/13620/commits/f371ff0""><code>f371ff0</code></a></td>");
+        [void]$stringBuilder.AppendLine("<td><a href=""https://github.com/files-community/Files/pull/$pullRequestId/commits/$AbbreviatedOid""><code>$AbbreviatedOid</code></a></td>");
         [void]$stringBuilder.AppendLine("</tr>");
         [void]$stringBuilder.AppendLine("<tr>");
         [void]$stringBuilder.AppendLine("<td><strong>Status:</strong></td>");
@@ -83,6 +90,8 @@ jobs:
         Write-Output $stringBuilder.ToString();
 
         $stringBuilder.ToString() | Out-File -FilePath $mdPath
+      env:
+        PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
 
     - name: Publish tests result
       uses: marocchino/sticky-pull-request-comment@v2
