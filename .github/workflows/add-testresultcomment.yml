@@ -76,7 +76,7 @@ jobs:
         [void]$stringBuilder.AppendLine(":---|:---|:---");
         [void]$stringBuilder.AppendLine("FolderTests|✅ Passed|_None_");
         [void]$stringBuilder.AppendLine("GeneralAppTests|✅ Passed|_None_");
-        [void]$stringBuilder.AppendLine("SettingsTests|❌ Failed|`Files.InteractionTests.Tests.SettingsTests.VerifySettingsAreAccessible`");
+        [void]$stringBuilder.AppendLine("SettingsTests|❌ Failed|<code>Files.InteractionTests.Tests.SettingsTests.VerifySettingsAreAccessible</code>");
         [void]$stringBuilder.AppendLine("");
         [void]$stringBuilder.AppendLine("");
 
