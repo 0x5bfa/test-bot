@@ -59,15 +59,20 @@ jobs:
         [void]$stringBuilder.AppendLine($title);
         [void]$stringBuilder.AppendLine("");
 
+        $failed = "❌"
+        $successful = "✅"
+        $skipped = "⏩"
+
+
         # Overview table
         [void]$stringBuilder.AppendLine("<table>");
         [void]$stringBuilder.AppendLine("<tr>");
-        [void]$stringBuilder.AppendLine("<td><strong>Latest commit:</strong></td>");
+        [void]$stringBuilder.AppendLine("<td><strong>Commit:</strong></td>");
         [void]$stringBuilder.AppendLine("<td><a href=""https://github.com/files-community/Files/pull/$pullRequestId/commits/$AbbreviatedOid""><code>$AbbreviatedOid</code></a></td>");
         [void]$stringBuilder.AppendLine("</tr>");
         [void]$stringBuilder.AppendLine("<tr>");
         [void]$stringBuilder.AppendLine("<td><strong>Status:</strong></td>");
-        [void]$stringBuilder.AppendLine("<td>✅ All tests have been passed.</td>");
+        [void]$stringBuilder.AppendLine("<td>All tests have passed</td>");
         [void]$stringBuilder.AppendLine("</tr>");
         [void]$stringBuilder.AppendLine("<tr>");
         [void]$stringBuilder.AppendLine("<td><strong>Full log:</strong></td>");
