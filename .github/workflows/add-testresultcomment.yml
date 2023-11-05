@@ -46,11 +46,40 @@ jobs:
         $mdPath = "testResults.md"
         [string]$title = "## Files Tests Result <img alt=""logo"" src=""https://github.com/files-community/Files/assets/62196528/6d4b489a-12be-4819-9bbc-a5f95858e77d"" width=""28"" align=""top"" />"
 
+        // Get test log
         [xml]$xmlDoc = Get-Content "testResults.trx"
 
+        # Header
         [void]$stringBuilder.AppendLine($title);
-        [void]$stringBuilder.AppendLine();
-        [void]$stringBuilder.AppendLine();
-        [void]$stringBuilder.AppendLine();
+
+        # Overview table
+        [void]$stringBuilder.AppendLine("<table>");
+        [void]$stringBuilder.AppendLine("<tr>");
+        [void]$stringBuilder.AppendLine("<td><strong>Latest commit:</strong></td>");
+        [void]$stringBuilder.AppendLine("<td><a href="https://github.com/files-community/Files/pull/13620/commits/f371ff0"><code>f371ff0</code></a></td>");
+        [void]$stringBuilder.AppendLine("</tr>");
+        [void]$stringBuilder.AppendLine("<tr>");
+        [void]$stringBuilder.AppendLine("<td><strong>Status:</strong></td>");
+        [void]$stringBuilder.AppendLine("<td>✅ All tests have been passed.</td>");
+        [void]$stringBuilder.AppendLine("</tr>");
+        [void]$stringBuilder.AppendLine("<tr>");
+        [void]$stringBuilder.AppendLine("<td><strong>Full log:</strong></td>");
+        [void]$stringBuilder.AppendLine("<td><a href="https://github.com/files-community/Files/actions/runs/6759052779/job/18371473998">https://github.com/files-community/Files/actions/runs/6759052779/job/18371473998</a></td>");
+        [void]$stringBuilder.AppendLine("</tr>");
+        [void]$stringBuilder.AppendLine("</table>");
+
+        // Details Table
+        [void]$stringBuilder.AppendLine("### Details");
+        [void]$stringBuilder.AppendLine("");
+        [void]$stringBuilder.AppendLine("");
+        [void]$stringBuilder.AppendLine("");
 
         Write-Output $stringBuilder.ToString();
+
+        $stringBuilder.ToString() | Out-File -FilePath $mdPath
+
+    - name: Publish tests result
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        header: test-result
+        path: testResults.md
