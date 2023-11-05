@@ -51,6 +51,7 @@ jobs:
 
         # Header
         [void]$stringBuilder.AppendLine($title);
+        [void]$stringBuilder.AppendLine("");
 
         # Overview table
         [void]$stringBuilder.AppendLine("<table>");
@@ -67,10 +68,14 @@ jobs:
         [void]$stringBuilder.AppendLine("<td><a href=""https://github.com/files-community/Files/actions/runs/6759052779/job/18371473998"">https://github.com/files-community/Files/actions/runs/6759052779/job/18371473998</a></td>");
         [void]$stringBuilder.AppendLine("</tr>");
         [void]$stringBuilder.AppendLine("</table>");
+        [void]$stringBuilder.AppendLine("");
 
         # Details Table
         [void]$stringBuilder.AppendLine("### Details");
-        [void]$stringBuilder.AppendLine("");
+        [void]$stringBuilder.AppendLine("Name|Status|Failed class");
+        [void]$stringBuilder.AppendLine("FolderTests|✅|_None_");
+        [void]$stringBuilder.AppendLine("GeneralAppTests|✅|_None_");
+        [void]$stringBuilder.AppendLine("SettingsTests|");
         [void]$stringBuilder.AppendLine("");
         [void]$stringBuilder.AppendLine("");
 
